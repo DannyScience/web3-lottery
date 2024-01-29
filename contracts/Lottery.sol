@@ -6,7 +6,7 @@ contract Lottery {
 
     address payable[] public players;
     uint256 public usdEntryFee;
-    AggregatorV3Interface public ethUsdPriceFeed;
+    AggregatorV3Interface internal ethUsdPriceFeed;
     enum LOTTERY_STATE{
         OPEN,
         CLOSED,
@@ -17,7 +17,8 @@ contract Lottery {
 
     constructor(address _priceFeedAddress) {
         usdEntryFee = 50 * 10 ** 18;
-        ethUsdPriceFeed = AggregatorV3Interface(_priceFeedAddress); 
+        ethUsdPriceFeed = AggregatorV3Interface(_priceFeedAddress);
+        lottery_state = LOTTERY_STATE.CLOSED;
 
     }
 
